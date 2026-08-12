@@ -11,15 +11,15 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/conelli/admin-backend/config"
-	"github.com/conelli/admin-backend/internal/handlers/admin"
-	"github.com/conelli/admin-backend/internal/handlers/auth"
-	"github.com/conelli/admin-backend/internal/handlers/health"
-	"github.com/conelli/admin-backend/internal/handlers/realtime"
-	"github.com/conelli/admin-backend/internal/store"
-	"github.com/conelli/admin-backend/internal/store/repo"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/heismyke/redd-backend/config"
+	"github.com/heismyke/redd-backend/internal/handlers/admin"
+	"github.com/heismyke/redd-backend/internal/handlers/auth"
+	"github.com/heismyke/redd-backend/internal/handlers/health"
+	"github.com/heismyke/redd-backend/internal/handlers/realtime"
+	"github.com/heismyke/redd-backend/internal/store"
+	"github.com/heismyke/redd-backend/internal/store/repo"
 )
 
 type Api struct {

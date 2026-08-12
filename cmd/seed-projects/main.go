@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/conelli/admin-backend/internal/store"
-	"github.com/conelli/admin-backend/internal/store/repo"
+	"github.com/heismyke/redd-backend/internal/store"
+	"github.com/heismyke/redd-backend/internal/store/repo"
 )
 
 func main() {

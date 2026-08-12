@@ -1,44 +1,48 @@
-name: conelli
+name: redd
 
 services:
-  conelli-admin-backend:
+  redd-admin-backend:
     build:
       context: ..
       dockerfile: Dockerfile
-    container_name: conelli-admin-backend
     environment:
       APP_ENV: ${APP_ENV:-development}
       PORT: ${PORT:-8000}
-      HOST: conelli-postgres
+      HOST: redd-postgres
       DB_USER: ${DB_USER:-myke}
       PASSWORD: ${PASSWORD:-password123}
-      DB_NAME: ${DB_NAME:-conelli_admin}
+      DB_NAME: ${DB_NAME:-redd_admin}
       DB_PORT: 5432
       SSLMODE: ${SSLMODE:-disable}
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5173,http://localhost:5174}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@conelliengineering.com}
-      ADMIN_NAME: ${ADMIN_NAME:-Conelli Admin}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-conelli}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@redd.example}
+      ADMIN_NAME: ${ADMIN_NAME:-Redd Admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-redd}
       AWS_REGION: ${AWS_REGION:-eu-west-1}
       AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
-      AWS_S3_PREFIX: ${AWS_S3_PREFIX:-conelli}
+      AWS_S3_PREFIX: ${AWS_S3_PREFIX:-redd}
       AWS_S3_PUBLIC_URL: ${AWS_S3_PUBLIC_URL:-}
     ports:
       - "${API_PORT:-8000}:${PORT:-8000}"
     depends_on:
-      - conelli-postgres
+      redd-postgres:
+        condition: service_healthy
 
-  conelli-postgres:
+  redd-postgres:
     image: postgres:16-alpine
-    container_name: conelli-postgres
     environment:
       POSTGRES_USER: ${DB_USER:-myke}
       POSTGRES_PASSWORD: ${PASSWORD:-password123}
-      POSTGRES_DB: ${DB_NAME:-conelli_admin}
+      POSTGRES_DB: ${DB_NAME:-redd_admin}
     ports:
       - "${DB_PORT:-55432}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-myke} -d ${DB_NAME:-redd_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres-data:

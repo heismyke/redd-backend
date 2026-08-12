@@ -3,9 +3,9 @@ package admin
 import (
 	"net/http"
 
-	"github.com/conelli/admin-backend/internal/store/dao"
-	"github.com/conelli/admin-backend/internal/store/repo"
 	"github.com/gin-gonic/gin"
+	"github.com/heismyke/redd-backend/internal/store/dao"
+	"github.com/heismyke/redd-backend/internal/store/repo"
 )
 
 type Handler struct {

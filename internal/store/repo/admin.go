@@ -1,15 +1,15 @@
 package repo
 
-import "github.com/conelli/admin-backend/internal/store/dao"
+import "github.com/heismyke/redd-backend/internal/store/dao"
 
 func SeedData() dao.AdminData {
 	return dao.AdminData{
 		Users: []dao.AdminUser{
-			{ID: "user_admin", Name: "Ada Okafor", Email: "admin@conelliengineering.com", PasswordHash: "dev", Role: "ADMIN", CreatedAt: "2026-01-08T09:00:00.000Z"},
-			{ID: "user_staff", Name: "Site Office", Email: "staff@conelliengineering.com", PasswordHash: "dev", Role: "STAFF", CreatedAt: "2026-01-10T09:00:00.000Z"},
+			{ID: "user_admin", Name: "Ada Okafor", Email: "admin@redd.example", PasswordHash: "dev", Role: "ADMIN", CreatedAt: "2026-01-08T09:00:00.000Z"},
+			{ID: "user_staff", Name: "Site Office", Email: "staff@redd.example", PasswordHash: "dev", Role: "STAFF", CreatedAt: "2026-01-10T09:00:00.000Z"},
 		},
 		Investors: []dao.Investor{
-			{ID: "inv_1", Name: "Conelli Partner", Email: "partner@conelliengineering.com", Phone: "+234 800 000 1001", MemberSince: "2022-03-01", Status: "active", PasswordHash: "dev"},
+			{ID: "inv_1", Name: "Redd Partner", Email: "partner@redd.example", Phone: "+234 800 000 1001", MemberSince: "2022-03-01", Status: "active", PasswordHash: "dev"},
 			{ID: "inv_2", Name: "Infrastructure Holdings Ltd", Email: "ops@infrastructureholdings.ng", Phone: "+234 800 000 1002", MemberSince: "2023-06-15", Status: "active", PasswordHash: "dev"},
 		},
 		Properties: []dao.Property{

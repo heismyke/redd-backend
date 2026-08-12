@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/conelli/admin-backend/internal/store/dao"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/heismyke/redd-backend/internal/store/dao"
 )
 
 func newID(prefix string) string {

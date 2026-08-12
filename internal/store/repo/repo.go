@@ -6,9 +6,9 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/conelli/admin-backend/config"
-	"github.com/conelli/admin-backend/internal/store"
-	"github.com/conelli/admin-backend/internal/store/dao"
+	"github.com/heismyke/redd-backend/config"
+	"github.com/heismyke/redd-backend/internal/store"
+	"github.com/heismyke/redd-backend/internal/store/dao"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
@@ -68,7 +68,7 @@ func (r *Repo) SeedProjects(ctx context.Context) error {
 
 func (r *Repo) AdminSummary(ctx context.Context) map[string]string {
 	return map[string]string{
-		"service": "Conelli Admin API",
+		"service": "Redd Admin API",
 		"status":  "ready",
 	}
 }

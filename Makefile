@@ -1,9 +1,9 @@
-APP_NAME := conelli-admin-backend
+APP_NAME := redd-admin-backend
 BIN_DIR := bin
 BIN := $(BIN_DIR)/$(APP_NAME)
 GOCACHE ?= $(CURDIR)/.cache/go-build
 MIGRATE_ARGS := $(filter-out migrate up,$(MAKECMDGOALS))
-COMPOSE := docker compose --project-name conelli -f devops/docker-compose.yml
+COMPOSE := docker compose --project-name redd -f devops/docker-compose.yml
 DEV_COMPOSE := docker compose -f devops/docker-compose.dev.yml
 PROD_COMPOSE := docker compose --env-file .env -f devops/docker-compose.prod.yml
 
@@ -45,19 +45,19 @@ run:
 dev: run
 
 dev-db-up:
-	$(COMPOSE) up -d conelli-postgres
+	$(COMPOSE) up -d redd-postgres
 
 dev-up:
 	$(DEV_COMPOSE) up -d --build
 
 dev-migrate:
-	$(COMPOSE) run --rm conelli-admin-backend conelli-admin-migrate up
+	$(COMPOSE) run --rm redd-admin-backend redd-admin-migrate up
 
 dev-down:
 	$(DEV_COMPOSE) down
 
 dev-logs:
-	$(DEV_COMPOSE) logs -f conelli-admin-backend
+	$(DEV_COMPOSE) logs -f redd-admin-backend
 
 prod-up:
 	$(PROD_COMPOSE) up -d --build
@@ -69,10 +69,10 @@ prod-logs:
 	$(PROD_COMPOSE) logs -f
 
 prod-logs-api:
-	$(PROD_COMPOSE) logs -f conelli-admin-backend
+	$(PROD_COMPOSE) logs -f redd-admin-backend
 
 prod-logs-db:
-	$(PROD_COMPOSE) logs -f conelli-postgres
+	$(PROD_COMPOSE) logs -f redd-postgres
 
 prod-logs-nginx:
 	$(PROD_COMPOSE) logs -f nginx
@@ -106,13 +106,13 @@ docker-up:
 	$(COMPOSE) up -d --build
 
 docker-migrate:
-	$(COMPOSE) run --rm conelli-admin-backend conelli-admin-migrate up
+	$(COMPOSE) run --rm redd-admin-backend redd-admin-migrate up
 
 docker-down:
 	$(COMPOSE) down
 
 docker-logs:
-	$(COMPOSE) logs -f api
+	$(COMPOSE) logs -f redd-admin-backend
 
 fmt:
 	gofmt -w .

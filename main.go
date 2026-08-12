@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/conelli/admin-backend/api"
-	"github.com/conelli/admin-backend/config"
+	"github.com/heismyke/redd-backend/api"
+	"github.com/heismyke/redd-backend/config"
 )
 
 func main() {

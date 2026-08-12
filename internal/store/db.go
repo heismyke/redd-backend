@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/conelli/admin-backend/config"
+	"github.com/heismyke/redd-backend/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

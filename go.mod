@@ -1,4 +1,4 @@
-module github.com/conelli/admin-backend
+module github.com/heismyke/redd-backend
 
 go 1.24
 

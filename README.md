@@ -1,6 +1,6 @@
-# Conelli Admin Backend
+# Redd Backend
 
-Gin and GORM backend service for the Conelli admin app.
+Gin and GORM backend service for Redd, a Conelli product.
 
 The project follows the DevCamper-style layout:
 
@@ -30,16 +30,16 @@ APP_ENV=development
 HOST=localhost
 DB_USER=myke
 PASSWORD=password123
-DB_NAME=conelli_admin
+DB_NAME=redd_admin
 DB_PORT=55432
 SSLMODE=disable
 CORS_ORIGIN=http://localhost:5173,http://localhost:5174,http://localhost:5175
-ADMIN_EMAIL=admin@conelliengineering.com
-ADMIN_NAME=Conelli Admin
+ADMIN_EMAIL=admin@redd.example
+ADMIN_NAME=Redd Admin
 ADMIN_PASSWORD=change-me
 AWS_REGION=eu-west-1
 AWS_S3_BUCKET=
-AWS_S3_PREFIX=conelli/dev
+AWS_S3_PREFIX=redd/dev
 AWS_S3_PUBLIC_URL=
 ```
 
@@ -78,7 +78,7 @@ AWS_S3_PUBLIC_URL=
 - `PUT /admin/documents/:id`
 - `DELETE /admin/documents/:id`
 
-Property records include public project fields used by Corneli and CIS: `client`, `year`, `tags`, `galleryImages`, `publicDescription`, and `publicOverview`.
+Property records include public project fields used by Redd: `client`, `year`, `tags`, `galleryImages`, `publicDescription`, and `publicOverview`.
 
 ## S3 Uploads
 
@@ -105,7 +105,7 @@ Start Postgres with Docker:
 make dev-db-up
 ```
 
-This uses Docker Compose project `conelli` and starts the database service as `conelli-postgres`.
+This uses Docker Compose project `redd` and starts the database service as `redd-postgres`.
 By default Postgres is exposed on host port `55432` to avoid conflicts with other local Postgres containers.
 The API container is exposed on `API_PORT`, defaulting to `8000`.
 
@@ -134,18 +134,18 @@ Production startup validates required values and fails fast when any of these ar
 ```sh
 APP_ENV=production
 PORT=8000
-DATABASE_URL=postgres://myke:password123@postgres.example.internal:5432/conelli_admin?sslmode=require
-CORS_ORIGIN=https://admin.conelliengineering.com,https://cis.conelliengineering.com,https://conelliengineering.com
-ADMIN_EMAIL=admin@conelliengineering.com
+DATABASE_URL=postgres://myke:password123@postgres.example.internal:5432/redd_admin?sslmode=require
+CORS_ORIGIN=https://admin.redd.example,https://redd.example
+ADMIN_EMAIL=admin@redd.example
 ADMIN_PASSWORD=replace-with-strong-password
 AWS_REGION=eu-west-1
-AWS_S3_BUCKET=conelli-prod-assets
+AWS_S3_BUCKET=redd-prod-assets
 ```
 
 When testing a local Vite admin frontend against the deployed API, include the local origin too:
 
 ```sh
-CORS_ORIGIN=https://admin.conelliengineering.com,https://cis.conelliengineering.com,https://conelliengineering.com,http://localhost:5173
+CORS_ORIGIN=https://admin.redd.example,https://redd.example,http://localhost:5173
 ```
 
 Keep `PORT=8000` in production unless `devops/nginx.conf` is updated too, because the Nginx upstream and Docker health checks target the API container on port `8000`.
@@ -163,11 +163,10 @@ The admin console data store uses GORM with Postgres. On startup the API auto-mi
 
 ## Seed Public Projects
 
-The bundled seed includes the public Corneli/CIS project catalog. To upsert those project records into an existing database without replacing staff, investors, or user-created records:
+The bundled seed includes the public Redd project catalog. To upsert those project records into an existing database without replacing staff, investors, or user-created records:
 
 ```sh
 make seed-projects
 ```
 
-This updates matching seeded project IDs and adds any missing seeded projects, updates, milestones, documents, and investor-property assignments. New projects created later in the admin console are served to Corneli and CIS through `/admin/data`.
-# redd-backend
+This updates matching seeded project IDs and adds any missing seeded projects, updates, milestones, documents, and investor-property assignments. New projects created later in the admin console are served to Redd through `/admin/data`.

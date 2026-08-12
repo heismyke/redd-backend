@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/conelli/admin-backend/internal/store/dao"
 	"github.com/gin-gonic/gin"
+	"github.com/heismyke/redd-backend/internal/store/dao"
 )
 
 func (h *Handler) CreateUpdate(c *gin.Context) {

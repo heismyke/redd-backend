@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/conelli/admin-backend/internal/store"
+	"github.com/heismyke/redd-backend/internal/store"
 )
 
 func main() {

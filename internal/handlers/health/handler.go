@@ -22,7 +22,7 @@ func (h *Handler) GetHealthStatus(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "healthy",
 		"version": "1.0.0",
-		"service": "Conelli Admin API",
+		"service": "Redd Admin API",
 	})
 }
 

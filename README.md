@@ -105,7 +105,7 @@ Start Postgres with Docker:
 make dev-db-up
 ```
 
-This uses Docker Compose project `conelli` and starts the database container/service as `conelli-postgres`.
+This uses Docker Compose project `conelli` and starts the database service as `conelli-postgres`.
 By default Postgres is exposed on host port `55432` to avoid conflicts with other local Postgres containers.
 The API container is exposed on `API_PORT`, defaulting to `8000`.
 
@@ -135,11 +135,17 @@ Production startup validates required values and fails fast when any of these ar
 APP_ENV=production
 PORT=8000
 DATABASE_URL=postgres://myke:password123@postgres.example.internal:5432/conelli_admin?sslmode=require
-CORS_ORIGIN=https://admin.conelliengineering.com,https://cis.conelliengineering.com
+CORS_ORIGIN=https://admin.conelliengineering.com,https://cis.conelliengineering.com,https://conelliengineering.com
 ADMIN_EMAIL=admin@conelliengineering.com
 ADMIN_PASSWORD=replace-with-strong-password
 AWS_REGION=eu-west-1
 AWS_S3_BUCKET=conelli-prod-assets
+```
+
+When testing a local Vite admin frontend against the deployed API, include the local origin too:
+
+```sh
+CORS_ORIGIN=https://admin.conelliengineering.com,https://cis.conelliengineering.com,https://conelliengineering.com,http://localhost:5173
 ```
 
 Keep `PORT=8000` in production unless `devops/nginx.conf` is updated too, because the Nginx upstream and Docker health checks target the API container on port `8000`.
@@ -164,3 +170,4 @@ make seed-projects
 ```
 
 This updates matching seeded project IDs and adds any missing seeded projects, updates, milestones, documents, and investor-property assignments. New projects created later in the admin console are served to Corneli and CIS through `/admin/data`.
+# redd-backend
